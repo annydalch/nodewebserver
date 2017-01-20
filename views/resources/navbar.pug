@@ -1,0 +1,5 @@
+#navbar
+  ul
+    each page in pages
+      li
+        a(href=page.href,class= (page.id == activePage) ? 'active' : 'inactive')= page.title

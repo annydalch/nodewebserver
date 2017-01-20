@@ -1,0 +1,13 @@
+html(lang='en-US')
+  meta(charset='UTF-8')
+  block header
+    include head.pug
+  body
+    block navbar
+      include navbar.pug
+    block body
+      div#body-wrapper
+        block content
+          p This page doesn't seem to have any content. Oops.
+    block footer
+      include footer.pug

@@ -1,0 +1,16 @@
+{
+  "name": "testwebserver",
+  "version": "0.0.0",
+  "description": "A webserver using express",
+  "main": "expressserver.js",
+  "author": "Arthur Goldman <arthur@goldman-tribe.org>",
+  "dependencies": {
+    "express": "^3.2.6",
+    "pug": "^2.0.0-beta6"
+  },
+  "scripts": {
+    "start": "node expressserver.js"
+  },
+  "devDependencies": {},
+  "license": "ISC"
+}

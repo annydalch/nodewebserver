@@ -1,0 +1,4 @@
+{"pages":[
+    { "file":"index.pug", "href":"/", "title":"Home", "id":"index" },
+    { "file":"foo.pug", "href":"/foo", "title":"Filler", "id":"filler" }
+]}
