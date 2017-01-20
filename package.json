@@ -1,9 +1,11 @@
 {
-  "name": "testwebserver",
-  "version": "0.0.0",
+  "name": "arthurg-webserver",
+  "version": "0.0.1",
   "description": "A webserver using express",
+  "bugs": { "url":"https://github.com/annydalch/nodewebserver/issues" },
+  "license": "MIT",
   "main": "expressserver.js",
-  "author": "Arthur Goldman <arthur@goldman-tribe.org>",
+  "author": { "name":"Arthur Goldman", "email":"arthur@goldman-tribe.org", "url":"http://arthurg.pro/" },
   "dependencies": {
     "express": "^3.2.6",
     "pug": "^2.0.0-beta6"
@@ -12,5 +14,5 @@
     "start": "node expressserver.js"
   },
   "devDependencies": {},
-  "license": "ISC"
+  "repository": { "type":"git", "url":"https://github.com/annydalch/nodewebserver.git"
 }
