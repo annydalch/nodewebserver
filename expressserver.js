@@ -1,8 +1,19 @@
 const express = require("express");
 const pug = require("pug");
 const app = express();
-const port = 8080;
 const fs = require("fs");
+var port;
+
+try {
+    port = fs.readFileSync("portToUse.txt", "utf8");
+} catch(err) {
+    port = 8080;
+    console.log("Failed to read portToUse.txt; defaulted to 8080");
+    console.log(err);
+} finally {
+    console.log("Selected port " + port);
+}
+
 const pages = JSON.parse(fs.readFileSync("pages.json", "utf-8")).pages;
 
 app.set('views', './views');
