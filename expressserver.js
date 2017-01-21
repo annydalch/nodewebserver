@@ -5,7 +5,7 @@ const fs = require("fs");
 var port;
 
 try {
-    port = fs.readFileSync("portToUse.txt", "utf8");
+    port = parseInt(fs.readFileSync("portToUse.txt", "utf8"));
 } catch(err) {
     port = 8080;
     console.log("Failed to read portToUse.txt; defaulted to 8080");
