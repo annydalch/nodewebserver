@@ -22,7 +22,6 @@ app.get("/:page", (req, res, next) => {
             requestPage = page;
         }
     }
-    console.log(requestPage);
     if (requestPage) {
         console.log("serving " + requestPage.href);
         res.render(requestPage.file, { pages:pages, activePage:requestPage.id});
