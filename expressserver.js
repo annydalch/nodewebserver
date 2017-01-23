@@ -2,6 +2,7 @@ const express = require("express");
 const pug = require("pug");
 const app = express();
 const fs = require("fs");
+const twitter = require("./twitterpage.js");
 var port;
 
 try {
@@ -23,6 +24,20 @@ app.use(express.static('static'));
 
 app.get("/", (req, res) => {
     res.render('index', { "pages":pages, activePage:"index" });
+});
+
+app.get("/twitter", (req, res) => {
+    twitter.getTweets((tweets) => {
+        res.render('twitter.pug', { pages:pages, activePage:"twitter", tweets:tweets });
+    })
+})
+
+app.get("/twitter/:id", (req, res) => {
+    console.log("got a request for tweets following " + req.params.id);
+    twitter.getTweets((tweets) => {
+        console.log("sending tweets");
+        res.send(tweets);
+    }, req.params.id)
 });
 
 app.get("/:page", (req, res, next) => {

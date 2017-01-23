@@ -1,0 +1,26 @@
+extends resources/page.pug
+
+block stylesheets
+  link(rel='stylesheet' type='text/css' href='/twitter.css')
+
+block title
+  title @qotd_bot's tweets
+  
+block scripts
+  script(src='/scripts/twitterembedscript.js' type='text/javascript')
+
+block content
+  div(id='description')
+    p.
+      I built
+      #[a(href='https://twitter.com/qotd_bot') @qotd_bot],
+      a bot which misattributes a historical quote every four hours.
+      Most of the quotes come from #[a(href='https://en.wikipedia.org/wiki/The_Yale_Book_of_Quotations') #[i The Yale Book of Quotations] by Fred R. Shapiro].
+      The bot is written in Python using the #[a(href='http://www.tweepy.org/') Tweepy library], and the code is on #[a(href='https://github.com/annydalch/qotd-bot') github].
+      Here are some of its most recent tweets:
+    button(id='refresh', type='button', onclick='refresh(' + tweets[0].id_str + ')') Refresh
+  ul(id='twitterTimeline')
+    each tweet in tweets
+      li(class='tweet')
+        p(class='username')= tweet.user.name + ':'
+        p(class='text')= tweet.text

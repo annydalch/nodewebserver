@@ -1,0 +1,15 @@
+#twitterTimeline {
+    list-style-type: none;
+}
+
+#twitterTimeline .tweet {
+    background-color: #fff888;
+    padding:5px;
+    margin:5px;
+    border:1px solid #cead8a;
+    width:40%;
+}
+
+#twitterTimeline .tweet .username {
+    text-align: center;
+}
