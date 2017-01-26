@@ -10,11 +10,13 @@ var port;
 
 try {
     port = parseInt(fs.readFileSync("portToUse.txt", "utf8"));
-} catch(err) {
+}
+catch (err) {
     port = 8080;
     console.log("Failed to read portToUse.txt; defaulted to 8080");
     console.log(err);
-} finally {
+}
+finally {
     console.log("Selected port " + port);
 }
 
@@ -28,12 +30,25 @@ app.set('view engine', 'pug')
 app.use(express.static('static'));
 
 app.get("/", (req, res) => {
-    res.render('index', { "pages":pages, activePage:"index" });
+    fs.readFile("pages.json", "utf8", (err, pages) => {
+        if (err) throw(err);
+        res.render('index', {
+            pages: JSON.parse(pages).pages,
+            activePage: "index"
+        });
+    })
 });
 
 app.get("/twitter", (req, res) => {
     twitter.getTweets((tweets) => {
-        res.render('twitter.pug', { pages:pages, activePage:"twitter", tweets:tweets });
+        fs.readFile("pages.json", "utf8", (err, pages) => {
+            if (err) throw(err);
+            res.render('twitter.pug', {
+                pages: JSON.parse(pages).pages,
+                activePage: "twitter",
+                tweets: tweets
+            });
+        })
     })
 })
 
@@ -46,19 +61,27 @@ app.get("/twitter/:id", (req, res) => {
 });
 
 app.get("/:page", (req, res, next) => {
-    var requestPage = false;
-    var page;
-    for (page of pages) {
-        if (page.href == ("/" + req.params.page)) {
-            requestPage = page;
+    fs.readFile("pages.json", "utf8", (err, pages) => {
+        if (err) throw(err);
+        pages = JSON.parse(pages).pages;
+        var requestPage = false;
+        var page;
+        for (page of pages) {
+            if (page.href == ("/" + req.params.page)) {
+                requestPage = page;
+            }
         }
-    }
-    if (requestPage) {
-        console.log("serving " + requestPage.href);
-        res.render(requestPage.file, { pages:pages, activePage:requestPage.id});
-    } else {
-        next()
-    }
+        if (requestPage) {
+            console.log("serving " + requestPage.href);
+            res.render(requestPage.file, {
+                pages: pages,
+                activePage: requestPage.id
+            });
+        }
+        else {
+            next()
+        }
+    })
 })
 
 app.use((err, request, response, next) => {
@@ -66,14 +89,18 @@ app.use((err, request, response, next) => {
     response.status(500).send('something broke!');
 })
 
-app.use(function (req, res, next) {
-  res.status(404).render("404.pug", { request:req.url, pages:pages, activePage:false });
+app.use(function(req, res, next) {
+    res.status(404).render("404.pug", {
+        request: req.url,
+        pages: pages,
+        activePage: false
+    });
 })
 
 app.listen(port, (err) => {
     if (err) {
         return console.log("Error!", err);
     };
-    
+
     console.log("server is listening on port " + port);
 });
