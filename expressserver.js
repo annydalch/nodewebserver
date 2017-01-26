@@ -1,8 +1,11 @@
+#!/usr/bin/nodejs
+
 const express = require("express");
 const pug = require("pug");
 const app = express();
 const fs = require("fs");
 const twitter = require("./twitterpage.js");
+const helmet = require("helmet");
 var port;
 
 try {
@@ -16,6 +19,8 @@ try {
 }
 
 const pages = JSON.parse(fs.readFileSync("pages.json", "utf-8")).pages;
+
+app.use(helmet());
 
 app.set('views', './views');
 app.set('view engine', 'pug')
