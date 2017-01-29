@@ -53,9 +53,7 @@ app.get("/twitter", (req, res) => {
 })
 
 app.get("/twitter/:id", (req, res) => {
-    console.log("got a request for tweets following " + req.params.id);
     twitter.getTweets((tweets) => {
-        console.log("sending tweets");
         res.send(tweets);
     }, req.params.id)
 });
@@ -72,7 +70,6 @@ app.get("/:page", (req, res, next) => {
             }
         }
         if (requestPage) {
-            console.log("serving " + requestPage.href);
             res.render(requestPage.file, {
                 pages: pages,
                 activePage: requestPage.id
