@@ -1,7 +1,5 @@
 {"pages":[
     { "file":"index.pug", "href":"/", "title":"Home", "id":"index" },
-    { "file":"foo.pug", "href":"/foo", "title":"Filler", "id":"filler" },
     { "file":"twitter.pug", "href":"/twitter", "title":"Quotebot", "id":"twitter" },
-    { "file":"blankpage.pug", "href":"/whygod", "title":"????", "id":"blank1" },
-    { "file":"blankpage.pug", "href":"/idontknow", "title":"Help", "id":"blank2"}
+    { "file":"resume.pug", "href":"/cv", "title":"Curriculum Vitae", "id":"cv" }
 ]}
