@@ -13,3 +13,13 @@
 #twitterTimeline .tweet .username {
     text-align: center;
 }
+
+#twitterTimeline .tweet .username a {
+    color: black;
+    text-decoration: underline;
+}
+
+#twitterTimeline .tweet .text a {
+    color: black;
+    text-decoration: none;
+}

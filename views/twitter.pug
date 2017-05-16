@@ -13,14 +13,19 @@ block content
   div(id='description')
     p.
       I built
-      #[a(href='https://twitter.com/qotd_bot') @qotd_bot],
+      #[a(href='https://twitter.com/qotd_bot') Art Theory Bot (@qotd_bot)],
+      a bot which tries to sound like it knows about art. It's built in #[a(href='https://www.rust-lang.org/') Rust]
+      using the #[a(href='https://crates.io/crates/twitter-api') twitter-api] crate.
+      Its source is available on #[a(href='https://github.com/annydalch/art_theory_bot') Github].
+    p.
+      A while back, I used the same Twitter handle for Misattributed Quote Bot,
       a bot which misattributes a historical quote every four hours.
       Most of the quotes come from #[a(href='https://en.wikipedia.org/wiki/The_Yale_Book_of_Quotations') #[i The Yale Book of Quotations] by Fred R. Shapiro].
       The bot is written in Python using the #[a(href='http://www.tweepy.org/') Tweepy library], and the code is on #[a(href='https://github.com/annydalch/qotd-bot') github].
-      Here are some of its most recent tweets:
-    button(id='refresh', type='button', onclick='refresh(' + tweets[0].id_str + ')') Refresh
+    p.
+      Here are some of my bot's most recent tweets:
   ul(id='twitterTimeline')
     each tweet in tweets
       li(class='tweet')
-        p(class='username')= tweet.user.name + ':'
-        p(class='text')= tweet.text
+        p(class='username') #[a(href='https://twitter.com/' + tweet.user.screen_name)= tweet.user.name + ':']
+        p(class='text') #[a(href='https://twitter.com/statuses/' + tweet.id_str)= tweet.text]
